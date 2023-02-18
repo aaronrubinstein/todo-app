@@ -1,0 +1,53 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+:root {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 16px;
+}
+
+input, button, textarea, select {
+    font: inherit;
+}
+
+button {
+    border: none;
+    padding: 0;
+    background: none;
+}
+
+body {
+    /* primary */
+    --bright-blue: hsl(220, 98%, 61%);
+    --check-bg: linear-gradient(135deg, hsl(192, 100%, 67%) 0%, hsl(280, 87%, 65%) 100%);
+    
+    /* light theme */
+    --body-bg: hsl(0, 0%, 98%);
+    --card-bg: hsl(0, 0%, 100%);
+    --card-border: hsl(236, 33%, 92%);
+    --text-primary: hsl(235, 19%, 35%);
+    --text-secondary: hsl(236, 9%, 61%);
+    --text-new: hsl(236, 9%, 61%);
+    --text-completed: hsl(233, 11%, 84%);
+    --text-secondary-hover: hsl(235, 19%, 35%);
+
+    min-height: 100vh;
+    background: var(--body-bg);
+}
+
+body.dark {
+    /* dark theme */
+    --body-bg: hsl(235, 21%, 11%);
+    --card-bg: hsl(235, 24%, 19%);
+    --card-border: hsl(235, 14%, 26%);
+    --text-primary: hsl(234, 39%, 85%);
+    --text-secondary: hsl(235, 16%, 42%);
+    --text-new: hsl(234, 11%, 52%); 
+    --text-completed: hsl(233, 14%, 35%);
+    --text-secondary-hover: hsl(236, 33%, 92%);
+}
