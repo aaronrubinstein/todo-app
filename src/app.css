@@ -37,7 +37,12 @@ body {
     --text-secondary-hover: hsl(235, 19%, 35%);
 
     min-height: 100vh;
-    background: var(--body-bg);
+    background-image: url('images/bg-desktop-light.jpg');
+    background-position: top center;
+    background-attachment: fixed;
+    background-size: 100vw auto;
+    background-repeat: no-repeat;
+    background-color: var(--body-bg);
 }
 
 body.dark {
@@ -50,4 +55,7 @@ body.dark {
     --text-new: hsl(234, 11%, 52%); 
     --text-completed: hsl(233, 14%, 35%);
     --text-secondary-hover: hsl(236, 33%, 92%);
+
+    background-image: url('images/bg-desktop-dark.jpg');
 }
+
