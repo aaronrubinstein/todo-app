@@ -6,6 +6,7 @@
 <div class="card">
     <input type="checkbox" bind:checked={completed} aria-label="Todo completed">
     <p class:completed="{completed}">{text}</p>
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path fill="currentColor" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>
 </div>
 
 <style>
@@ -15,7 +16,7 @@
         border-bottom: 1px solid var(--card-border);
         padding: 24px 20px;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         gap: 24px;
     }
 
@@ -28,6 +29,14 @@
         border-radius: 50%;
         position: relative;
         cursor: pointer;
+        flex: 0 0 auto;
+    }
+
+    input:hover {
+        /* https://codyhouse.co/nuggets/css-gradient-borders */
+        background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+            var(--check-bg) border-box;
+        border: 1px solid transparent;
     }
 
     input::before {
@@ -60,6 +69,18 @@
     p.completed {
         color: var(--text-completed);
         text-decoration: line-through;
+    }
+
+    svg {
+        margin-left: auto;
+        cursor: pointer;
+        color: var(--delete-cross);
+        flex: 0 0 auto;
+        opacity: 0;
+    }
+
+    .card:hover svg {
+        opacity: 1;
     }
 
 </style>

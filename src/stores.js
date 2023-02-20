@@ -30,5 +30,10 @@ export const todos = writable([
         id: 6,
         text: 'Complete Todo App on Frontend Mentor',
         completed: false
+    },
+    {
+        id: 7,
+        text: 'Complete Todo App on Frontend Mentor and then do some other stuff to make this a long todo.',
+        completed: false
     }
 ]);

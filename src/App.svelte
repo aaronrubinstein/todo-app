@@ -1,7 +1,8 @@
 <script>
     import { todos } from "./stores.js";
-    import NewTodo from "./lib/NewTodo.svelte";
+    import AddTodo from "./lib/AddTodo.svelte";
     import Todo from "./lib/Todo.svelte";
+    import Controls from "./lib/Controls.svelte";
 
     let darkTheme = false;
     $: if (darkTheme) {
@@ -14,12 +15,16 @@
 
 <div class="container">
     <header>
-       <span class="title">Todo</span>
-       <img class="theme-icon" src="images/icon-moon.svg" alt="Dark theme toggle">
+        <span class="title">Todo</span>
+        <label>
+            <input type="checkbox" bind:checked={darkTheme}>
+            <img class:hidden="{darkTheme}" src="images/icon-moon.svg" alt="Dark theme toggle">
+            <img class:hidden="{!darkTheme}" src="images/icon-sun.svg" alt="Dark theme toggle">
+        </label>
     </header>
 
     <main>
-        <NewTodo />
+        <AddTodo />
         
         {#if $todos.length}
             <div class="todos-container">
@@ -28,6 +33,7 @@
                         bind:text={todo.text} 
                         bind:completed={todo.completed} />
                 {/each}
+                <Controls />
             </div>
             <p class="drag-drop-text">Drag and drop to reorder list</p>
         {/if}
@@ -58,6 +64,15 @@
         padding-top: 6px;
     }
 
+    label {
+        cursor: pointer;
+    }
+
+    input[type="checkbox"] {
+        appearance: none;
+        margin: 0;
+    }
+
     .todos-container {
         border-radius: 5px;
         overflow: hidden;
@@ -75,6 +90,9 @@
         text-align: center;
     }
 
+    img.hidden {
+        display: none;
+    }
 
     @media (max-width: 700px) {
 
@@ -82,7 +100,7 @@
             font-size: 28px;
         }
 
-        .theme-icon {
+        img {
             height: 20px;
             width: 20px;
         }
