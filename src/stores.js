@@ -34,13 +34,3 @@ export const todos = writable([
 ]);
 
 export const filter = writable('all');
-
-export const filteredTodoIds = derived([todos, filter], ([$todos, $filter]) => {
-    if ($filter === 'active') {
-        return $todos.filter(todo => !todo.completed).map(todo => todo.id);
-    } else if ($filter === 'completed') {
-        return $todos.filter(todo => todo.completed).map(todo => todo.id);
-    } else {
-        return $todos;
-    }
-});
