@@ -3,6 +3,7 @@
     import AddTodo from "./lib/AddTodo.svelte";
     import Todo from "./lib/Todo.svelte";
     import Footer from "./lib/Footer.svelte";
+    import Filters from "./lib/Filters.svelte";
 
     let darkTheme = false;
     $: if (darkTheme) {
@@ -47,6 +48,9 @@
                     {/if}
                 {/each}
                 <Footer />
+            </div>
+            <div class="mobile-filters">
+                <Filters />
             </div>
             <p class="drag-drop-text">Drag and drop to reorder list</p>
         {/if}
@@ -107,6 +111,10 @@
         display: none;
     }
 
+    .mobile-filters {
+        display: none;
+    }
+
     @media (max-width: 700px) {
 
         .title {
@@ -116,6 +124,18 @@
         img {
             height: 20px;
             width: 20px;
+        }
+
+        .mobile-filters {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 48px;
+            padding: 15px 0;
+            border-radius: 5px;
+            margin-top: 16px;
+            background: var(--card-bg);
+            box-shadow: var(--card-shadow);
         }
 
     }

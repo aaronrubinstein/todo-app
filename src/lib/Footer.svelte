@@ -13,7 +13,9 @@
 
 <div class="card">
     <span class="items-left">{activeCount} item{activeCount === 1 ? '' : 's'} left</span>
-    <Filters />
+    <div class="filters">
+        <Filters />
+    </div>
     <button on:click={clearCompleted} type="button">Clear Completed</button>
 </div>
 
@@ -29,6 +31,7 @@
     span, button {
         font-size: 14px;
         line-height: 14px;
+        letter-spacing: -0.19px;
         color: var(--text-secondary);
     }
 
@@ -44,4 +47,23 @@
     button:hover {
         color: var(--text-secondary-hover);
     }
+
+    @media (max-width: 700px) {
+
+        .card {
+            padding: 16px 20px 20px 20px;
+        }
+
+        span, button {
+            font-size: 12px;
+            line-height: 12px;
+            letter-spacing: -0.17px;
+        }
+
+        .filters {
+            display: none;
+        }
+
+    }
+
 </style>

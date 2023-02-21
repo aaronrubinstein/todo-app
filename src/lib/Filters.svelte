@@ -27,6 +27,7 @@
     .filter-container {
         display: flex;
         gap: 19px;
+        letter-spacing: -0.19px;
     }
 
     button {

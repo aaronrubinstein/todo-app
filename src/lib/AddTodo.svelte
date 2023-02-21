@@ -27,7 +27,7 @@
         border-radius: 5px;
         background: var(--card-bg);
         box-shadow: var(--card-shadow);
-        padding: 24px 20px;
+        padding: 20px 24px;
         display: flex;
         align-items: center;
         gap: 24px;
@@ -57,5 +57,27 @@
 
     textarea::placeholder {
         color: var(--text-input-placeholder);
+    }
+
+    @media (max-width: 700px) {
+        
+        .card {
+            min-height: 48px;
+            padding: 14px 20px;
+            gap: 12px;
+        }
+        
+        textarea {
+            font-size: 12px;
+            line-height: 12px;
+            letter-spacing: -0.17px;
+            padding: 4px 0 0 0;
+        }
+
+        .circle {
+            height: 20px;
+            width: 20px;
+        }
+
     }
 </style>

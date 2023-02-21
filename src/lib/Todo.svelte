@@ -23,7 +23,7 @@
         min-height: 64px;
         background: var(--card-bg);
         border-bottom: 1px solid var(--card-border);
-        padding: 24px 20px;
+        padding: 20px 24px;
         display: flex;
         align-items: center;
         gap: 24px;
@@ -93,6 +93,38 @@
 
     .card:hover svg {
         opacity: 1;
+    }
+
+    @media (max-width: 700px) {
+
+        .card {
+            min-height: 48px;
+            padding: 14px 20px;
+            gap: 12px;
+        }
+
+        p {
+            font-size: 12px;
+            line-height: 12px;
+            letter-spacing: -0.17px;
+            padding: 4px 0 0 0;
+        }
+
+        input, input::before {
+            height: 20px;
+            width: 20px;
+        }
+
+        button {
+            display: grid;
+            place-items: center;
+        }
+        
+        svg {
+            opacity: 1;
+            transform: scale(0.80);
+        }
+
     }
 
 </style>
