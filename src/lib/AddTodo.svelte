@@ -1,10 +1,24 @@
 <script>
     import autosize from 'svelte-autosize';
+    import { todos } from '../stores.js';
+
+    const newTodo = e => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            let todo = {
+                id: Math.floor(Math.random() * 10000) + 6,
+                text: e.target.value,
+                completed: false
+            }
+            $todos = [todo, ...$todos];
+            e.target.value = '';
+        }
+    };
 </script>
 
 <div class="card">
     <div class="circle"></div>
-    <textarea use:autosize rows="1" placeholder="Create a new todo..."></textarea>
+    <textarea on:keydown={newTodo} use:autosize rows="1" placeholder="Create a new todo..."></textarea>
 </div>
 
 <style>

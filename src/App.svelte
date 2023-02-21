@@ -1,14 +1,23 @@
 <script>
-    import { todos } from "./stores.js";
+    import { todos, filter } from "./stores.js";
     import AddTodo from "./lib/AddTodo.svelte";
     import Todo from "./lib/Todo.svelte";
-    import Controls from "./lib/Controls.svelte";
+    import Footer from "./lib/Footer.svelte";
 
     let darkTheme = false;
     $: if (darkTheme) {
         document.body.classList.add('dark');
     } else {
         document.body.classList.remove('dark');
+    }
+
+    let filteredTodoIds = [];
+    $: if ($filter === 'active') {
+        filteredTodoIds = $todos.filter(todo => !todo.completed).map(todo => todo.id);
+    } else if ($filter === 'completed') {
+        filteredTodoIds = $todos.filter(todo => todo.completed).map(todo => todo.id);
+    } else {
+        filteredTodoIds = $todos.map(todo => todo.id);
     }
 
 </script>
@@ -18,8 +27,8 @@
         <span class="title">Todo</span>
         <label>
             <input type="checkbox" bind:checked={darkTheme}>
-            <img class:hidden="{darkTheme}" src="images/icon-moon.svg" alt="Dark theme toggle">
-            <img class:hidden="{!darkTheme}" src="images/icon-sun.svg" alt="Dark theme toggle">
+            <img class:hidden="{darkTheme}" src="images/icon-moon.svg" alt="Dark theme">
+            <img class:hidden="{!darkTheme}" src="images/icon-sun.svg" alt="Light theme">
         </label>
     </header>
 
@@ -29,11 +38,15 @@
         {#if $todos.length}
             <div class="todos-container">
                 {#each $todos as todo (todo.id)}
-                    <Todo 
-                        bind:text={todo.text} 
-                        bind:completed={todo.completed} />
+                    {#if filteredTodoIds.includes(todo.id)}
+                        <Todo 
+                            id={todo.id}
+                            text={todo.text} 
+                            bind:completed={todo.completed}
+                            bind:todos={$todos} />
+                    {/if}
                 {/each}
-                <Controls />
+                <Footer />
             </div>
             <p class="drag-drop-text">Drag and drop to reorder list</p>
         {/if}

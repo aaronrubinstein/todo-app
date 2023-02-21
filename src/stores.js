@@ -1,4 +1,4 @@
-import { writable } from "svelte/store";
+import { writable, derived } from "svelte/store";
 
 export const todos = writable([
     {
@@ -30,10 +30,17 @@ export const todos = writable([
         id: 6,
         text: 'Complete Todo App on Frontend Mentor',
         completed: false
-    },
-    {
-        id: 7,
-        text: 'Complete Todo App on Frontend Mentor and then do some other stuff to make this a long todo.',
-        completed: false
     }
 ]);
+
+export const filter = writable('all');
+
+export const filteredTodoIds = derived([todos, filter], ([$todos, $filter]) => {
+    if ($filter === 'active') {
+        return $todos.filter(todo => !todo.completed).map(todo => todo.id);
+    } else if ($filter === 'completed') {
+        return $todos.filter(todo => todo.completed).map(todo => todo.id);
+    } else {
+        return $todos;
+    }
+});
