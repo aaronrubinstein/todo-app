@@ -53,7 +53,6 @@ export const setTodoCompleted = (id, completed) => {
     todos.update(todos => {
         let target = todos.findIndex(todo => todo.id === id);
         todos[target].completed = completed;
-        console.log('called');
         return todos;
     }
 )}
