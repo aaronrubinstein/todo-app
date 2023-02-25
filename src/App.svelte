@@ -1,5 +1,5 @@
 <script>
-    import { todos, filter } from "./stores.js";
+    import { todos, filteredTodos } from "./stores.js";
     import AddTodo from "./lib/AddTodo.svelte";
     import Todo from "./lib/Todo.svelte";
     import Footer from "./lib/Footer.svelte";
@@ -10,15 +10,6 @@
         document.body.classList.add('dark');
     } else {
         document.body.classList.remove('dark');
-    }
-
-    let filteredTodoIds = [];
-    $: if ($filter === 'active') {
-        filteredTodoIds = $todos.filter(todo => !todo.completed).map(todo => todo.id);
-    } else if ($filter === 'completed') {
-        filteredTodoIds = $todos.filter(todo => todo.completed).map(todo => todo.id);
-    } else {
-        filteredTodoIds = $todos.map(todo => todo.id);
     }
 
 </script>
@@ -38,14 +29,11 @@
         
         {#if $todos.length}
             <div class="todos-container">
-                {#each $todos as todo (todo.id)}
-                    {#if filteredTodoIds.includes(todo.id)}
-                        <Todo 
-                            id={todo.id}
-                            text={todo.text} 
-                            bind:completed={todo.completed}
-                            bind:todos={$todos} />
-                    {/if}
+                {#each $filteredTodos as todo (todo.id)}
+                    <Todo 
+                        id={todo.id}
+                        text={todo.text} 
+                        completed={todo.completed} />
                 {/each}
                 <Footer />
             </div>

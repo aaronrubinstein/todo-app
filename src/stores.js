@@ -34,3 +34,25 @@ export const todos = writable([
 ]);
 
 export const filter = writable('all');
+
+export const filteredTodos = derived([todos, filter], ([$todos, $filter]) => {
+    if ($filter === 'active') {
+        return $todos.filter(todo => !todo.completed);
+    } else if ($filter === 'completed') {
+        return $todos.filter(todo => todo.completed);
+    } else {
+        return $todos;
+    }
+});
+
+export const deleteTodo = id => {
+    todos.update(todos => todos.filter(todo => todo.id !== id));
+}
+
+export const setTodoCompleted = (id, completed) => {
+    todos.update(todos => {
+        let target = todos.findIndex(todo => todo.id === id);
+        todos[target].completed = completed;
+        return todos;
+    }
+)}
