@@ -1,4 +1,6 @@
 <script>
+    import { dndzone } from 'svelte-dnd-action';
+    import { flip } from 'svelte/animate';
     import { todos } from "./stores.js";
     import AddTodo from "./lib/AddTodo.svelte";
     import Todo from "./lib/Todo.svelte";
@@ -12,6 +14,9 @@
         document.body.classList.remove('dark');
     }
 
+    const handleSort = e => {
+        $todos = e.detail.items;
+    }
 </script>
 
 <div class="container">
@@ -29,12 +34,16 @@
         
         {#if $todos.length}
             <div class="todos-container">
-                {#each $todos as todo (todo.id)}
-                    <Todo 
-                        id={todo.id}
-                        text={todo.text} 
-                        bind:completed={todo.completed} />
-                {/each}
+                <div use:dndzone={{items: $todos, dropTargetStyle: {}, flipDurationMs: 200}} on:consider={handleSort} on:finalize={handleSort}>
+                    {#each $todos as todo (todo.id)}
+                        <div animate:flip={{duration: 200}}>
+                            <Todo 
+                                id={todo.id}
+                                text={todo.text} 
+                                bind:completed={todo.completed} />
+                        </div>
+                    {/each}
+                </div>
                 <Footer />
             </div>
             <div class="mobile-filters">
