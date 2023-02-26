@@ -1,5 +1,5 @@
 <script>
-    import { todos, filteredTodos } from "./stores.js";
+    import { todos } from "./stores.js";
     import AddTodo from "./lib/AddTodo.svelte";
     import Todo from "./lib/Todo.svelte";
     import Footer from "./lib/Footer.svelte";
@@ -29,11 +29,11 @@
         
         {#if $todos.length}
             <div class="todos-container">
-                {#each $filteredTodos as todo (todo.id)}
+                {#each $todos as todo (todo.id)}
                     <Todo 
                         id={todo.id}
                         text={todo.text} 
-                        completed={todo.completed} />
+                        bind:completed={todo.completed} />
                 {/each}
                 <Footer />
             </div>
