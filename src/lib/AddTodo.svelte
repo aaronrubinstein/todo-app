@@ -1,6 +1,8 @@
 <script>
-    import autosize from 'svelte-autosize';
+    import autosize, { autosizeUpdate } from './autosize.js';
     import { todos } from '../stores.js';
+
+    let textarea;
 
     const newTodo = e => {
         if (e.key === 'Enter') {
@@ -12,13 +14,14 @@
             }
             $todos = [todo, ...$todos];
             e.target.value = '';
+            autosizeUpdate(textarea);
         }
     };
 </script>
 
 <div class="card">
     <div class="circle"></div>
-    <textarea on:keydown={newTodo} use:autosize rows="1" placeholder="Create a new todo..."></textarea>
+    <textarea on:keydown={newTodo} use:autosize bind:this={textarea} rows="1" placeholder="Create a new todo..."></textarea>
 </div>
 
 <style>

@@ -15,6 +15,6 @@
     "vite": "^4.1.0"
   },
   "dependencies": {
-    "svelte-autosize": "^1.0.1"
+    "autosize": "^6.0.1"
   }
 }
