@@ -135,6 +135,10 @@
             box-shadow: var(--card-shadow);
         }
 
+        .drag-drop-text {
+            margin-top: 40px;
+        }
+
     }
 
 </style>
