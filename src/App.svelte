@@ -2,17 +2,11 @@
     import { dndzone } from 'svelte-dnd-action';
     import { flip } from 'svelte/animate';
     import { todos } from "./stores.js";
+    import Header from './lib/Header.svelte';
     import AddTodo from "./lib/AddTodo.svelte";
     import Todo from "./lib/Todo.svelte";
     import Footer from "./lib/Footer.svelte";
     import Filters from "./lib/Filters.svelte";
-
-    let darkTheme = false;
-    $: if (darkTheme) {
-        document.body.classList.add('dark');
-    } else {
-        document.body.classList.remove('dark');
-    }
 
     const handleSort = e => {
         $todos = e.detail.items;
@@ -20,18 +14,9 @@
 </script>
 
 <div class="container">
-    <header>
-        <span class="title">Todo</span>
-        <label>
-            <input type="checkbox" bind:checked={darkTheme}>
-            <img class:hidden="{darkTheme}" src="images/icon-moon.svg" alt="Dark theme">
-            <img class:hidden="{!darkTheme}" src="images/icon-sun.svg" alt="Light theme">
-        </label>
-    </header>
-
+    <Header />
     <main>
         <AddTodo />
-        
         {#if $todos.length}
             <div class="todos-container">
                 <div use:dndzone={{items: $todos, dropTargetStyle: {}, flipDurationMs: 200}} on:consider={handleSort} on:finalize={handleSort}>
@@ -62,31 +47,6 @@
         padding: 0 24px;
     }
 
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 40px;
-    }
-
-    .title {
-        font-size: 40px;
-        font-weight: 700;
-        letter-spacing: 15px;
-        text-transform: uppercase;
-        color: #FFF;
-        padding-top: 6px;
-    }
-
-    label {
-        cursor: pointer;
-    }
-
-    input[type="checkbox"] {
-        appearance: none;
-        margin: 0;
-    }
-
     .todos-container {
         border-radius: 5px;
         overflow: hidden;
@@ -104,24 +64,11 @@
         text-align: center;
     }
 
-    img.hidden {
-        display: none;
-    }
-
     .mobile-filters {
         display: none;
     }
 
     @media (max-width: 700px) {
-
-        .title {
-            font-size: 28px;
-        }
-
-        img {
-            height: 20px;
-            width: 20px;
-        }
 
         .mobile-filters {
             display: flex;
