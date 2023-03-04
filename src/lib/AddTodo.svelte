@@ -17,6 +17,7 @@
             autosizeUpdate(textarea);
         }
     };
+
 </script>
 
 <div class="card">
