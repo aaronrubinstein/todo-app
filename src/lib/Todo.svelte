@@ -60,7 +60,7 @@
         position: absolute;
         top: -1px;
         left: -1px;
-        content: url('images/icon-check.svg');
+        content: url('../assets/icon-check.svg');
         height: 24px;
         width: 24px;
         border-radius: 50%;
