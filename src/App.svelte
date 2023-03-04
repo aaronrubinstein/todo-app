@@ -22,9 +22,9 @@
                 <div use:dndzone={{items: $todos, dropTargetStyle: {}, flipDurationMs: 200}} on:consider={handleSort} on:finalize={handleSort}>
                     {#each $todos as todo (todo.id)}
                         <div animate:flip={{duration: 200}}>
-                            <Todo 
+                            <Todo
                                 id={todo.id}
-                                text={todo.text} 
+                                text={todo.text}
                                 bind:completed={todo.completed} />
                         </div>
                     {/each}
