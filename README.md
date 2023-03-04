@@ -11,12 +11,12 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
 
 **Desktop**
 
-<img src="./solution/desktop.jpg" height=70% width=70%>
+<img src="./solution/desktop.png" height=70% width=70%>
 
 **Mobile**
 
-<img src="./solution/mobile.jpg" height=70% width=70%>
+<img src="./solution/mobile.png" height=40% width=40%>
 
 **Dark Theme**
 
-<img src="./solution/darktheme.jpg" height=40% width=40%>
+<img src="./solution/darkmode.png" height=40% width=40%>
