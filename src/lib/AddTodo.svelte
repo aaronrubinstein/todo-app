@@ -5,7 +5,7 @@
     let textarea;
 
     const newTodo = e => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' || e.which === 13) {
             e.preventDefault();
             let todo = {
                 id: Math.floor(Math.random() * 10000) + 6,
