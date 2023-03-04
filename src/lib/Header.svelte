@@ -11,7 +11,7 @@
 </script>
 
 <header>
-    <span class="title">Todo</span>
+    <h1 class="title">Todo</h1>
     <label>
         <input type="checkbox" bind:checked={darkTheme}>
         <img class:hidden="{darkTheme}" src="images/icon-moon.svg" alt="Dark theme">

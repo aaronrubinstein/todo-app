@@ -17,7 +17,7 @@
 <div class="card" class:hide>
     <input type="checkbox" bind:checked={completed} aria-label="Todo completed">
     <p class:completed="{completed}">{text}</p>
-    <button type="button" on:click={() => deleteTodo(id)}>
+    <button type="button" on:click={() => deleteTodo(id)} aria-label="Delete todo">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path fill="currentColor" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>
     </button>
 </div>
