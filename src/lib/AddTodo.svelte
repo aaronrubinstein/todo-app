@@ -4,15 +4,43 @@
 
     let textarea;
 
-    const newTodo = e => {
-        if (e.key === 'Enter' || e.which === 13) {
+    // const newTodo = e => {
+    //     if (e.key === 'Enter' || e.which === 13) {
+    //         e.preventDefault();
+    //         let todo = {
+    //             id: Math.floor(Math.random() * 10000) + 6,
+    //             text: e.target.value,
+    //             completed: false
+    //         }
+    //         $todos = [todo, ...$todos];
+    //         e.target.value = '';
+    //         autosizeUpdate(textarea);
+    //     }
+    // };
+
+    const newTodo = text => {
+        let todo = {
+            id: Math.floor(Math.random() * 10000) + 6,
+            text: text,
+            completed: false
+        }
+        $todos = [todo, ...$todos];
+    };
+
+    const handleKeydown = e => {
+        if (e.key === 'Enter') {
             e.preventDefault();
-            let todo = {
-                id: Math.floor(Math.random() * 10000) + 6,
-                text: e.target.value,
-                completed: false
-            }
-            $todos = [todo, ...$todos];
+            newTodo(e.target.value);
+            e.target.value = '';
+            autosizeUpdate(textarea);
+        }
+    };
+
+    // Issue with 'Enter' not always being detected on keydown in Chrome on Android
+    // As a backup, check if input has newline character 
+    const handleInput = e => {
+        if ((e.target.value.match(/\n/g) || []).length > 0) {
+            newTodo(e.target.value);
             e.target.value = '';
             autosizeUpdate(textarea);
         }
@@ -22,7 +50,14 @@
 
 <div class="card">
     <div class="circle"></div>
-    <textarea on:keydown={newTodo} use:autosize bind:this={textarea} rows="1" placeholder="Create a new todo..."></textarea>
+    <textarea 
+        on:keydown={handleKeydown} 
+        on:input={handleInput}
+        use:autosize 
+        bind:this={textarea} 
+        rows="1" 
+        placeholder="Create a new todo...">
+    </textarea>
 </div>
 
 <style>
