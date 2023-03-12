@@ -4,20 +4,6 @@
 
     let textarea;
 
-    // const newTodo = e => {
-    //     if (e.key === 'Enter' || e.which === 13) {
-    //         e.preventDefault();
-    //         let todo = {
-    //             id: Math.floor(Math.random() * 10000) + 6,
-    //             text: e.target.value,
-    //             completed: false
-    //         }
-    //         $todos = [todo, ...$todos];
-    //         e.target.value = '';
-    //         autosizeUpdate(textarea);
-    //     }
-    // };
-
     const newTodo = text => {
         let todo = {
             id: Math.floor(Math.random() * 10000) + 6,
@@ -56,8 +42,8 @@
         use:autosize 
         bind:this={textarea} 
         rows="1" 
-        placeholder="Create a new todo...">
-    </textarea>
+        placeholder="Create a new todo..."
+    ></textarea>
 </div>
 
 <style>
